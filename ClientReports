@@ -1,0 +1,23 @@
+function prepareReports() {
+  var censusFolder = DriveApp.getFolderById("1TR0gwu4kNYApPDv0-B7AheBbf0NvYleV");
+  var censusFiles = censusFolder.getFiles();
+  while (censusFiles.hasNext()){
+    var nextFile = censusFiles.next();
+    var fileId = nextFile.getId();
+    var ss = SpreadsheetApp.openById(fileId);
+    var censusTotal = ss.getLastRow()-1;
+    var clientTemplate = DriveApp.getFileById("1zBpRoGz2qOanqsEDeR7K-A3zoTjwwIqyOkZu8Nk8S0Q");
+    var clientName = nextFile.getName();
+    var clientReport = clientTemplate.makeCopy(clientName + " Report");
+    var reportId = clientReport.getId();
+    var cr = SpreadsheetApp.openById(reportId);
+    cr.getRange('B2').setValue(censusTotal);
+    var outboxFolder = DriveApp.getFolderById("1MXdl8-1-R_vDY06iEwoGSXWk_9bNzpOu");
+    outboxFolder.addFile(clientReport);
+    var templateFolder = DriveApp.getFolderById("1Mr30IYWTs8ZAD_le7WBLpAt4tm-4YAtt");
+    templateFolder.removeFile(clientReport);
+    var archiveFolder = DriveApp.getFolderById("1qb6_Y7B8BAGrQzLAYm6xSpc2Xy7ufmaw");
+    archiveFolder.addFile(nextFile);
+    censusFolder.removeFile(nextFile);
+  }
+}
