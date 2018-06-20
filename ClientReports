@@ -1,7 +1,14 @@
 /*
-Sample script for automatically generating monthly client reports. The example below retrieves the census total from any new client CSV files uploaded into a specified Google folder, and then transfers the census total into a custom client report template. After the client report is generated, the original census file is stored in an archive and the client report is moved into an outbox, ready for internal review before delivery to client.
+Sample script for automatically generating monthly client reports.
 
-The census total is presented as a sample data point. The script can be modified to accommodate any additional data points included in the client report template.     
+The example below retrieves the census total from any new client CSV files
+uploaded into a specified Google folder, and then transfers the census total
+into a custom client report template. After the client report is generated,
+the original census file is stored in an archive and the client report is moved
+into an outbox, ready for internal review before delivery to client.
+
+The census total is presented as a sample data point. The script can be modified
+to accommodate any additional data points included in the client report template.
 */
 
 
